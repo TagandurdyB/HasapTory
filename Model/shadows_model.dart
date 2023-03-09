@@ -16,7 +16,13 @@ class ThemeShadows {
                   offset: const Offset(5, 0),
                   blurRadius: 10,
                   spreadRadius: 0.5)
-            ];          
+            ];   
+       List<BoxShadow> all = [
+              BoxShadow(
+                  color: Colors.grey[800]!,
+                  blurRadius: 10,
+                  spreadRadius: 0.5)
+            ];                  
 }
 
 class ThemeDarkShadows extends ThemeShadows {
@@ -35,5 +41,13 @@ class ThemeDarkShadows extends ThemeShadows {
                   offset: const Offset(5, 0),
                   blurRadius: 10,
                   spreadRadius: 0.5)
-            ];           
+            ]; 
+               @override
+   List<BoxShadow> all = [
+              BoxShadow(
+                  color: Colors.grey[600]!,
+                  blurRadius: 10,
+                  spreadRadius: 0.5)
+            ];            
+                    
 }

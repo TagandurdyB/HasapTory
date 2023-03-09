@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import '../Scaffold/my_scaffold_all.dart';
 import '/ViewModel/Providers/provider_table.dart';
 import '/ViewModel/size_vm.dart';
 
 // ignore: must_be_immutable
-class SecondScreen extends StatelessWidget {
-   SecondScreen({super.key});
+class TablePage extends StatelessWidget {
+   TablePage({super.key});
 
  late BuildContext context;
   @override
   Widget build(BuildContext context) {
     this.context = context;
-    return Container(
-      // color:Colors.red,
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          buildHeader(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: buildTable(),
-          )
-        ],
+    return ScaffoldAll(
+      body: Container(
+        // color:Colors.red,
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildHeader(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: buildTable(),
+            )
+          ],
+        ),
       ),
     );
   }

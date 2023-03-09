@@ -35,6 +35,7 @@ class ProcessTheme {
   }
 
   void get tongleTheme => _changeProvider(context).tongleTheme();
+  Texts get texts => _changeProvider(context).texts;
 }
 
 class DistributorTheme {

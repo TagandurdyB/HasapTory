@@ -54,10 +54,13 @@ class MyPopUpp {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              textAlign: centerTitle ? TextAlign.center : TextAlign.start,
-              style: DistributorTheme(context).styles.popTitle,
+            child: Material(
+              color: Colors.transparent,
+              child: Text(
+                title,
+                textAlign: centerTitle ? TextAlign.center : TextAlign.start,
+                style: DistributorTheme(context).styles.popTitle,
+              ),
             ),
           ),
           Padding(

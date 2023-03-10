@@ -7,12 +7,12 @@ import 'ViewModel/routes_vm.dart';
 import 'ViewModel/theme_vm.dart';
 import 'ViewModel/names_vm.dart';
 
-
-void main() async{
-   WidgetsFlutterBinding.ensureInitialized();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.openBox(Names.tables); 
-   Hive.openBox(Names.table); 
+  Hive.openBox(Names.tables);
+  Hive.openBox(Names.column);
+  Hive.openBox(Names.row);
   runApp(MultiProvider(
     providers: MyProvoders.list,
     child: const MyApp(),

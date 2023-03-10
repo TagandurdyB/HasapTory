@@ -12,6 +12,8 @@ class ThemeStyle {
       TextStyle(color: Colors.black, fontSize: MySize.arentir * 0.06);
   TextStyle popAction =
       TextStyle(color: Colors.black, fontSize: MySize.arentir * 0.035);
+        TextStyle column =
+      TextStyle(color: Colors.black, fontSize: MySize.arentir * 0.04);
 }
 
 class ThemeDarkStyle extends ThemeStyle {
@@ -27,4 +29,7 @@ class ThemeDarkStyle extends ThemeStyle {
   @override
   TextStyle popAction =
       TextStyle(color: Colors.white, fontSize: MySize.arentir * 0.035);
+        @override
+  TextStyle column =
+      TextStyle(color: Colors.white, fontSize: MySize.arentir * 0.04);
 }

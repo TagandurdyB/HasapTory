@@ -82,6 +82,7 @@ class ProcessTable {
       _changeProvider(context).editTable(tabIndex, name);
 
   String get valueIndex => _changeProvider(context).tableValues()[tabIndex];
+  String value(int index) => _changeProvider(context).tableValues()[index];
 }
 
 class DistributorTable {

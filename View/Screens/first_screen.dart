@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hasaptory/View/Widgets/ReadyInput/ready_input.dart';
 import 'package:hasaptory/View/Widgets/ReadyInput/ready_input_base.dart';
 import 'package:hasaptory/View/Widgets/my_container.dart';
+import 'package:hasaptory/View/Widgets/pop_input_w.dart';
 import 'package:hasaptory/ViewModel/Providers/provider_table.dart';
+import 'package:hasaptory/ViewModel/Providers/provider_table_detal.dart';
 import 'package:hasaptory/ViewModel/Providers/provider_theme.dart';
 
 import '../../ViewModel/names_vm.dart';
@@ -53,8 +54,7 @@ class FirstScreen extends StatelessWidget {
     final bool isNotAdd = index < DistributorTable(context).length;
     return MyContainer(
       borderColor: DistributorTheme(context).colors.drawerIcon,
-      onTap: () =>
-          isNotAdd ? Navigator.pushNamed(context, Rout.table) : _addPop(),
+      onTap: () => isNotAdd ? _tablePage(index) : _addPop(),
       margin: const EdgeInsets.all(8),
       shape: MySize.arentir * 0.05,
       width: MySize.arentir * 0.5,
@@ -67,11 +67,21 @@ class FirstScreen extends StatelessWidget {
     );
   }
 
-  void _addPop() => inputPop("Tablissa Ad ber", Tags.nameTable, "GOŞ", () {
+  void _tablePage(int index) {
+    ProcessDetal(context).changeTable(ProcessTable(context).value(index));
+    Navigator.pushNamed(context, Rout.table);
+  }
+
+  void _addPop() => PopInput(
+      title: "Tablissa Ad ber",
+      inputTag: Tags.nameTable,
+      nameBtn: "GOŞ",
+      canPop: false,
+      func: () {
         final String value = RIBase.getText(Tags.nameTable);
         ProcessTable(context).addTable(value);
         Navigator.pop(context);
-      },"");
+      }).pop(context);
 
   Widget buildChild(int index) {
     return Column(
@@ -83,8 +93,11 @@ class FirstScreen extends StatelessWidget {
               onPressed: () => adjuster(false, index),
               icon: const Icon(Icons.delete, color: Colors.white)),
         ),
-        Text(DistributorTable(context).value(index),
-            style: DistributorTheme(context).styles.appBar,textAlign: TextAlign.center,),
+        Text(
+          DistributorTable(context).value(index),
+          style: DistributorTheme(context).styles.appBar,
+          textAlign: TextAlign.center,
+        ),
         Align(
           alignment: Alignment.bottomRight,
           child: IconButton(
@@ -109,8 +122,14 @@ class FirstScreen extends StatelessWidget {
         ProcessTable(context).deleteIndex;
       });
 
-  void editPop() =>
-      inputPop("Täzeden at ber", Tags.newTable, "ÜÝTGET", editWarning,ProcessTable(context).valueIndex);
+  void editPop() => PopInput(
+          canPop: false,
+          title: "Täzeden at ber",
+          inputTag: Tags.newTable,
+          nameBtn: "ÜÝTGET",
+          func: editWarning,
+          startVal: ProcessTable(context).valueIndex)
+      .pop(context);
 
   void editWarning() =>
       popFunc("Üns beriň!!!", ProcessTheme(context).texts.editPop, "ÜÝTGET",
@@ -135,36 +154,6 @@ class FirstScreen extends StatelessWidget {
         actions: [
           ActionTeam(text: "ÝATYR"),
           ActionTeam(text: nameBtn, func: func)
-        ]).pop(context);
-  }
-
-  void inputPop(
-    String title,
-    String inputTag,
-    String nameBtn,
-    Function func,
-    String startVal, 
-  ) {
-    MyPopUpp(
-        width: MySize.width * 0.3,
-        height: MySize.height * 0.3,
-        shape: 20,
-        title: title,
-        content: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ReadyInput(
-            startVal: startVal,
-            autoFocus: true,
-            tag: inputTag,
-            cursorColor: Colors.amber,
-            disableBorderColor: Colors.purple,
-            shape: true,
-            label: "Adyny giriz",
-          ),
-        ),
-        actions: [
-          ActionTeam(text: "ÝATYR"),
-          ActionTeam(canPop: false, text: nameBtn, func: func)
         ]).pop(context);
   }
 
